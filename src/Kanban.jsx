@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { FaTrash } from "react-icons/fa";
+import { wrapLinksInText } from "./App";
 
 const Kanban = ({ tasks, setTasks, updateTask, deleteTask }) => {
   const [editingTaskId, setEditingTaskId] = useState(null);
@@ -76,8 +77,8 @@ const Kanban = ({ tasks, setTasks, updateTask, deleteTask }) => {
                         autoFocus
                       />
                     ) : (
-                      <span onDoubleClick={() => handleDoubleClick(task.id, task.name)}>
-                        {task.name}
+                      <span className="line-clamp-2" onDoubleClick={() => handleDoubleClick(task.id, task.name)}>
+                        {wrapLinksInText(task.name)}
                       </span>
                     )}
                     <button

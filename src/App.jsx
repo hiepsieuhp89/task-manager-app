@@ -10,6 +10,19 @@ import { useNotification } from "./hooks/useNotification";
 
 const API_URL = "https://67028cf5bd7c8c1ccd3f2f52.mockapi.io/todos";
 
+
+export const wrapLinksInText = (text) => {
+  const urlRegex = /(https?:\/\/[^\s,]+)/g;
+  return text.split(urlRegex).map((part, index) => 
+    urlRegex.test(part) ? (
+      <a key={index} href={part} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  );
+};
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");

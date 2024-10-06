@@ -8,6 +8,7 @@ import {
   FaTrash
 } from "react-icons/fa";
 import { ImSpinner8 } from "react-icons/im";
+import { wrapLinksInText } from "./App";
 
 const List = ({
   tasks,
@@ -124,14 +125,14 @@ const List = ({
                         />
                       ) : (
                         <span
-                          className={`flex-grow ${
+                          className={`flex-grow line-clamp-2 ${
                             task.completed
                               ? "text-gray-500 line-through"
                               : "text-gray-700"
                           }`}
                           onDoubleClick={() => handleDoubleClick(task.id, task.name)}
                         >
-                          {task.name}
+                          {wrapLinksInText(task.name)}
                           {!task.completed && task.isProcessing && (
                             <span className="ml-2 text-xs text-gray-500">
                               (in progress)
